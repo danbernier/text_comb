@@ -1,7 +1,6 @@
 require 'cue/ext'
 
-module CueStringTests
-
+module TestsForCueMethods
   def test_can_call_normal_string_methods
     plain_string = "I came. I saw. I hacked."
     cue_string = cue_string(plain_string)
@@ -49,15 +48,15 @@ module CueStringTests
 end
 
 class TestCueStringNew < Test::Unit::TestCase
-  include CueStringTests
+  include TestsForCueMethods
 
   def cue_string(plain_string)
     Cue::String.new(plain_string)
   end
 end
 
-class TestStringExtensions < Test::Unit::TestCase
-  include CueStringTests
+class TestManuallyExtendingAString < Test::Unit::TestCase
+  include TestsForCueMethods
 
   def cue_string(plain_string)
     plain_string.extend(Cue::StringExtensions)
