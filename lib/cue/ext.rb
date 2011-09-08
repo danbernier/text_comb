@@ -1,15 +1,26 @@
+require 'delegate'
+
 module Cue
   module StringExtensions
-    def each_word
-      Cue.each_word(self.to_s)
+    def each_word(&block)
+      Cue.each_word(self.to_s, &block)
     end
 
-    def each_sentence
-      Cue.each_sentence(self.to_s)
+    def each_sentence(&block)
+      Cue.each_sentence(self.to_s, &block)
     end
 
-    def each_ngram(n)
-      Cue.each_ngram(self.to_s, n)
+    def each_ngram(n, &block)
+      Cue.each_ngram(self.to_s, n, &block)
+    end
+  end
+
+  class String < DelegateClass(::String)
+    include StringExtensions
+
+    def initialize(str)
+      @target = str
+      super(@target)
     end
   end
 end
