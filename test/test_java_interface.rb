@@ -1,4 +1,4 @@
-require 'ruby_cue_lang'
+require 'cue'
 
 class TestJavaInterface < Test::Unit::TestCase
   def stray_birds
