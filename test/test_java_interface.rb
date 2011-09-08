@@ -1,16 +1,6 @@
 require 'cue'
 
 class TestJavaInterface < Test::Unit::TestCase
-  def stray_birds
-    "Stray birds of summer come to my window to sing and fly away.  And
-     yellow leaves of autumn, which have no songs, flutter and fall there
-     with a sigh.  O troupe of little vagrants of the world, leave your
-     footprints in my words."
-  end
-
-  def stray_birds_short
-    stray_birds.sub(/\..*/m, '')
-  end
 
   def littany_against_fear
     "I must not fear.  Fear is the mind-killer.  Fear is the little-death
@@ -22,9 +12,9 @@ class TestJavaInterface < Test::Unit::TestCase
 
   def test_each_word
     words = []
-    Cue.each_word(stray_birds_short) { |word| words.push word }
+    Cue.each_word("I must not fear. ") { |word| words.push word }
 
-    expected_words = %w[Stray birds of summer come to my window to sing and fly away]
+    expected_words = %w[I must not fear]
 
     expected_words.zip(words).each do |expected, actual|
       assert_equal expected, actual
@@ -53,7 +43,7 @@ class TestJavaInterface < Test::Unit::TestCase
 
   def test_each_ngram
     ngrams = []
-    Cue.each_ngram("I must not fear", 2) { |ngram| ngrams.push ngram }
+    Cue.each_ngram("I must not fear. ", 2) { |ngram| ngrams.push ngram }
 
     assert_equal "I must", ngrams.shift
     assert_equal "must not", ngrams.shift
