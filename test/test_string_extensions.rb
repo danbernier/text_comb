@@ -1,4 +1,4 @@
-require 'cue/ext'
+require 'cue'
 
 module TestsForCueMethods
   def test_can_call_normal_string_methods

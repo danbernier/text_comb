@@ -1,5 +1,4 @@
 require 'delegate'
-require 'cue'
 
 module Cue
   module StringExtensions
