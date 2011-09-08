@@ -10,36 +10,28 @@ module TestsForCueMethods
     assert_equal plain_string.gsub(/i/i, "We"), cue_string.gsub(/i/i, "We")
   end
 
-  def test_plain_strings_do_not_have_cue_methods
-    cue_string = cue_string("I came. I saw. I hacked.")
-
-    [:each_word, :each_sentence, :each_ngram].each do |method|
-      assert !"".respond_to?(method)
-    end
-  end
-
   def test_can_call_each_word
+    cuestr = cue_string("I came. I saw. I hacked.")
     expected = %w[I came I saw I hacked]
 
-    cuestr = cue_string("I came. I saw. I hacked.")
     actual = cuestr.enum_for(:each_word).to_a
 
     assert_equal expected, actual
   end
 
   def test_can_call_each_sentence
+    cuestr = cue_string("I came. I saw. I hacked.")
     expected = ["I came. ", "I saw. ", "I hacked."]
 
-    cuestr = cue_string("I came. I saw. I hacked.")
     actual = cuestr.enum_for(:each_sentence).to_a
 
     assert_equal expected, actual
   end
 
   def test_can_call_each_ngram
+    cuestr = cue_string("Never wake a sleeping cat.")
     expected = ["Never wake a", "wake a sleeping", "a sleeping cat"]
 
-    cuestr = cue_string("Never wake a sleeping cat.")
     actual = []
     cuestr.each_ngram(3) { |ng| actual.push ng }
 
