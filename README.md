@@ -15,6 +15,7 @@ handles "counting strings, identifying languages, and removing stop
 words."
 
 ### Currently
+#### Cue Module
 I have a Cue module, with three methods:
 
 ```ruby
@@ -34,11 +35,44 @@ end
 Each has a simple unit test you can run via code(rake) or code(rake
 test).
 
+#### Cue::StringExtensions
+
+Extend a string with Cue::StringExtensions, and it'll have those
+methods:
+
+```ruby
+motto = "I came. I saw. I hacked."
+motto.extend(Cue::StringExtensions)
+motto.each_sentence do |sentence|
+  puts sentence
+end
+
+# prints:
+I came.
+I saw.
+I hacked.
+```
+
+#### Cue::String
+
+You can instantiate a Cue::String with a normal string, and get the
+same effect.
+
+```ruby
+littany = Cue::String.new("I must not fear.")
+littany.each_ngram(3) do |ngram|
+  puts ngram
+end
+
+# prints:
+I must not
+must not fear
+```
+
 ### Future Plans
 
-- Create a module you can mix into a String, so you can call those
-  methods on it.
-- Let you extend all String classes with the module, if that's what
-  you're into. Something like code(require 'cue/core_ext').
+- Let you extend all Strings with Cue::StringExtensions, if that's
+  what you're into. Something like code(require 'cue/core_ext').
+- Stop words! These are totally missing from the wrapper right now.
 - code(Cue.each_ngram) currently yields whole strings - maybe split
   them into Arrays of words.
