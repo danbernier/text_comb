@@ -1,5 +1,5 @@
 require 'java'
-require '../bin/cue.language.jar'
+require 'bin/cue.language.jar'
 
 # The default way to reference classes
 # (unless their root package is java, javax, org, or com)
