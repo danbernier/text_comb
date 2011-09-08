@@ -63,6 +63,8 @@ else to its string. It's like mixing Cue::StringExtensions into your
 own string.
 
 ```ruby
+require 'cue'
+
 littany = Cue::String.new("I must not fear.")
 littany.each_ngram(3) do |ngram|
   puts ngram
@@ -76,8 +78,17 @@ must not fear
 ### StringExtensions For Everybody!
 
 If you're feeling generous, code(require 'cue/core_ext') mixes
-Cue::StringExtensions into the core String class, so _everyone_ can
+Cue::StringExtensions into the core String class, so **everyone** can
 enjoy it.
+
+```ruby
+require 'cue/core_ext'
+
+"Fear is the mind-killer.".enum_for(:each_word).to_a
+
+# returns:
+["Fear", "is", "the", "mind-killer"]
+```
 
 ### Future Plans
 
