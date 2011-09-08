@@ -1,3 +1,4 @@
+require 'cue'
 require 'cue/ext'
 
 class String
