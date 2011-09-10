@@ -14,27 +14,23 @@ class TestCueStringNew < Test::Unit::TestCase
     cuestr = Cue::String.new("I came. I saw. I hacked.")
     expected = %w[I came I saw I hacked]
 
-    actual = cuestr.enum_for(:each_word).to_a
-
-    assert_equal expected, actual
+    assert_equal expected, cuestr.enum_for(:each_word).to_a
+    assert_equal expected, cuestr.each_word.to_a
   end
 
   def test_can_call_each_sentence
     cuestr = Cue::String.new("I came. I saw. I hacked.")
     expected = ["I came. ", "I saw. ", "I hacked."]
 
-    actual = cuestr.enum_for(:each_sentence).to_a
-
-    assert_equal expected, actual
+    assert_equal expected, cuestr.enum_for(:each_sentence).to_a
+    assert_equal expected, cuestr.each_sentence.to_a
   end
 
   def test_can_call_each_ngram
     cuestr = Cue::String.new("Never wake a sleeping cat.")
     expected = ["Never wake a", "wake a sleeping", "a sleeping cat"]
 
-    actual = []
-    cuestr.each_ngram(3) { |ng| actual.push ng }
-
-    assert_equal expected, actual
+    assert_equal expected, cuestr.enum_for(:each_ngram, 3).to_a
+    assert_equal expected, cuestr.each_ngram(3).to_a
   end
 end
