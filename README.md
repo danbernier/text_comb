@@ -36,6 +36,15 @@ Cue.each_ngram(string, 3) do |ngram|
 end
 ```
 
+Blocks are optional on all of them:
+
+```ruby
+Cue.each_ngram("hey you guys", 2)
+
+# returns:
+["hey you", "you guys"]
+```
+
 ### Mix-in Cue::StringExtensions
 
 Extend a string with Cue::StringExtensions, and it'll have those
@@ -54,6 +63,8 @@ end
 I came.
 I saw.
 I hacked.
+
+motto.each_word.to_a.uniq #=> ["I", "came", "saw", "hacked"]
 ```
 
 ### Make a Cue::String
@@ -84,7 +95,7 @@ enjoy it.
 ```ruby
 require 'cue/core_ext'
 
-"Fear is the mind-killer.".enum_for(:each_word).to_a
+"Fear is the mind-killer.".each_word.to_a
 
 # returns:
 ["Fear", "is", "the", "mind-killer"]
