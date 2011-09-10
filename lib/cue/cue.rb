@@ -8,33 +8,26 @@ require '../bin/cue.language.jar'
 module Cue
 
   def self.each_word(string, &block)
-    iter = CueEnumerator.new Java::CueLang::WordIterator.new(string)
-
-    if block_given?
-      iter.each &block
-    else
-      iter
-    end
+    iterate Java::CueLang::WordIterator.new(string), &block
   end
 
   def self.each_sentence(string, &block)
-    iter = CueEnumerator.new Java::CueLang::SentenceIterator.new(string)
-
-    if block_given?
-      iter.each &block
-    else
-      iter
-    end
+    iterate Java::CueLang::SentenceIterator.new(string), &block
   end
 
   # TODO allow for Locale, and custom StopWords
   def self.each_ngram(string, n, &block)
-    iter = CueEnumerator.new Java::CueLang::NGramIterator.new(n, string)
+    iterate Java::CueLang::NGramIterator.new(n, string), &block
+  end
 
-    if block_given?
-      iter.each &block
-    else
-      iter
+  private
+  def self.iterate(java_iter, &block)
+    CueEnumerator.new(java_iter).tap do |enum|
+      if block_given?
+        enum.each &block
+      else
+        enum
+      end
     end
   end
 
