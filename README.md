@@ -39,7 +39,7 @@ end
 Blocks are optional on all of them:
 
 ```ruby
-Cue.each_ngram("hey you guys", 2)
+Cue.each_ngram("hey you guys", 2).to_a
 
 # returns:
 ["hey you", "you guys"]
@@ -64,7 +64,10 @@ I came.
 I saw.
 I hacked.
 
-motto.each_word.to_a.uniq #=> ["I", "came", "saw", "hacked"]
+motto.each_word.to_a.uniq
+
+# returns:
+["I", "came", "saw", "hacked"]
 ```
 
 ### Make a Cue::String
