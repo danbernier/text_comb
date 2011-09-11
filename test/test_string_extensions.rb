@@ -33,4 +33,12 @@ class TestCueStringNew < Test::Unit::TestCase
     assert_equal expected, cuestr.enum_for(:each_ngram, 3).to_a
     assert_equal expected, cuestr.each_ngram(3).to_a
   end
+
+  def test_ngrams_with_stop_words
+    cuestr = Cue::String.new("I saw red roosters at Willy's farm.")
+    expected = ["saw red", "red roosters", "Willy's farm"]
+
+    ngrams = cuestr.each_ngram(2, :stop_words => :English).to_a
+    assert_equal expected, ngrams
+  end
 end

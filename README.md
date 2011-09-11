@@ -27,33 +27,33 @@ string = "He must be a little nuts. He is. I mean he just isn't well
           screwed on is he?"
 
 Cue.each_word(string) do |word|
-  puts word
+  p word
 end
 
 # prints:
-# He
-# must
-# be
-# ...
+"He"
+"must"
+"be"
+...
 
 Cue.each_sentence(string) do |sentence|
-  puts sentence
+  p sentence
 end
 
 # prints:
-# He must be a little nuts.
-# He is.
-# I mean he just isn't well screwed on is he?
+"He must be a little nuts. "
+"He is. "
+"I mean he just isn't well screwed on is he?"
 
 Cue.each_ngram(string, 5) do |ngram|
-  puts ngram
+  p ngram
 end
 
 # prints:
-# He must be a little
-# must be a little nuts
-# I mean he just isn't
-# ...
+"He must be a little"
+"must be a little nuts"
+"I mean he just isn't"
+...
 ```
 
 Leave off the blocks, and get Enumerables:
@@ -115,7 +115,15 @@ motto.each_word.to_a.uniq
 ["I", "came", "saw", "hacked"]
 ```
 
-Stop-words aren't supported in Cue::StringExtensions. Yet. YET.
+Stop-words for n-grams work the same way, too.
+
+```ruby
+string = "I saw red roosters at Ted's farm."
+string.extend(Cue::StringExtensions)
+string.each_ngram(2, :stop_words => :English).to_a
+
+# returns:
+["saw red", "red roosters", "Ted's farm"]
 
 ### Make a Cue::String
 
@@ -127,13 +135,10 @@ own string.
 require 'cue'
 
 littany = Cue::String.new("I must not fear.")
-littany.each_ngram(3) do |ngram|
-  puts ngram
-end
+littany.each_ngram(3).to_a
 
-# prints:
-I must not
-must not fear
+# returns:
+["I must not", "must not fear"]
 ```
 
 ### StringExtensions For Everybody!
@@ -153,6 +158,5 @@ require 'cue/core_ext'
 
 ### Future Plans
 
-- Get those stop-words on Cue::StringExtensions.
 - code(Cue.each_ngram) currently yields whole strings - maybe split
   them into Arrays of words.

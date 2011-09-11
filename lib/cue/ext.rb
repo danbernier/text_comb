@@ -10,8 +10,8 @@ module Cue
       Cue.each_sentence(self.to_s, &block)
     end
 
-    def each_ngram(n, &block)
-      Cue.each_ngram(self.to_s, n, &block)
+    def each_ngram(n, options={}, &block)
+      Cue.each_ngram(self.to_s, n, options, &block)
     end
     
   end
