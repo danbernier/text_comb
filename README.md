@@ -16,9 +16,9 @@ words."
 
 ## How to Use It
 
-### Use the Cue Module, Directly
+### It's All In the Cue Module
 
-It has methods for splitting up text:
+There are methods for splitting up text:
 
 ```ruby
 require 'cue'
@@ -36,13 +36,35 @@ Cue.each_ngram(string, 3) do |ngram|
 end
 ```
 
-Blocks are optional on all of them:
+Leave off the blocks, and get Enumerables:
 
 ```ruby
-Cue.each_ngram("hey you guys", 2).to_a
+Cue.each_ngram("Hey you guys!", 2).to_a
 
 # returns:
-["hey you", "you guys"]
+["Hey you", "you guys"]
+```
+
+Cue can take a guess at the language, and use the appropriate stop-words:
+```ruby
+string = "That's a great mustache, grandma!"
+Cue.each_ngram(string, 2, :stop_words=>:guess).to_a
+
+# returns:
+["great mustache", "mustache grandma"]
+```
+
+If it picks wrong, and you know what you're dealing with, you can specify:
+```ruby
+Cue.each_ngram(string, 3, :stop_words=>:Croatian) do |ngram|
+  puts ngram
+end
+```
+
+If you're curious, Cue will tell you how it guessed:
+```ruby
+string = "J'ai la moutarde dans ma moustache."
+Cue.guess_language(string).to_s => "French"
 ```
 
 ### Mix-in Cue::StringExtensions
@@ -69,6 +91,8 @@ motto.each_word.to_a.uniq
 # returns:
 ["I", "came", "saw", "hacked"]
 ```
+
+Stop-words aren't supported in Cue::StringExtensions. Yet. YET.
 
 ### Make a Cue::String
 
@@ -106,6 +130,6 @@ require 'cue/core_ext'
 
 ### Future Plans
 
-- Stop words! These are totally missing from the wrapper right now.
+- Get those stop-words on Cue::StringExtensions.
 - code(Cue.each_ngram) currently yields whole strings - maybe split
   them into Arrays of words.
