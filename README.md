@@ -23,17 +23,37 @@ There are methods for splitting up text:
 ```ruby
 require 'cue'
 
+string = "He must be a little nuts. He is. I mean he just isn't well
+          screwed on is he?"
+
 Cue.each_word(string) do |word|
   puts word
 end
+
+# prints:
+# He
+# must
+# be
+# ...
 
 Cue.each_sentence(string) do |sentence|
   puts sentence
 end
 
-Cue.each_ngram(string, 3) do |ngram|
+# prints:
+# He must be a little nuts.
+# He is.
+# I mean he just isn't well screwed on is he?
+
+Cue.each_ngram(string, 5) do |ngram|
   puts ngram
 end
+
+# prints:
+# He must be a little
+# must be a little nuts
+# I mean he just isn't
+# ...
 ```
 
 Leave off the blocks, and get Enumerables:
@@ -46,6 +66,7 @@ Cue.each_ngram("Hey you guys!", 2).to_a
 ```
 
 Cue can take a guess at the language, and use the appropriate stop-words:
+
 ```ruby
 string = "That's a great mustache, grandma!"
 Cue.each_ngram(string, 2, :stop_words=>:guess).to_a
@@ -55,6 +76,7 @@ Cue.each_ngram(string, 2, :stop_words=>:guess).to_a
 ```
 
 If it picks wrong, and you know what you're dealing with, you can specify:
+
 ```ruby
 Cue.each_ngram(string, 3, :stop_words=>:Croatian) do |ngram|
   puts ngram
@@ -62,6 +84,7 @@ end
 ```
 
 If you're curious, Cue will tell you how it guessed:
+
 ```ruby
 string = "J'ai la moutarde dans ma moustache."
 Cue.guess_language(string).to_s => "French"
