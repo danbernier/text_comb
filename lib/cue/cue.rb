@@ -15,9 +15,36 @@ module Cue
     iterate Java::CueLang::SentenceIterator.new(string), &block
   end
 
-  # TODO allow for Locale, and custom StopWords
-  def self.each_ngram(string, n, &block)
-    iterate Java::CueLang::NGramIterator.new(n, string), &block
+  # Cue.each_ngram(string, 3)
+  # Cue.each_ngram(string, 3, :locale => java.util.Locale.default)
+  # Cue.each_ngram(string, 3, :stop_words => :guess)
+  # Cue.each_ngram(string, 3, :stop_words => :English)
+  # Cue.each_ngram(string, 3, Cue.guess_language(string))
+  def self.each_ngram(string, n, options={}, &block)
+
+    locale = options[:locale] || java.util.Locale.default
+
+    stop_words_val = case options[:stop_words]
+      when :guess then guess_language(string)
+      when Symbol then stop_words(options[:stop_words])
+      when Java::CueLangStop::StopWords then options[:stop_words]
+      when nil then nil
+      else raise "Can't recognize the stop_words: #{options[:stop_words]}"
+    end
+
+    ngram_iter = Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val)
+    iterate ngram_iter, &block
+  end
+
+  # Cue.guess_language "How are you?"
+  def self.guess_language(string)
+    Java::CueLangStop::StopWords.guess string
+  end
+
+  # Cue.stop_words :English
+  # Cue.stop_words :French
+  def self.stop_words(stopwords_symbol)
+    Java::CueLangStop::StopWords.const_get(stopwords_symbol)
   end
 
   private
@@ -43,9 +70,6 @@ module Cue
         yield @java_iter.next
       end
     end
-
   end
-
-  # TODO add StopWords.guess()
 
 end

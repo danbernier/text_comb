@@ -49,4 +49,12 @@ class TestJavaInterface < Test::Unit::TestCase
       assert_equal expected.shift, ngram
     end
   end
+
+  def test_each_ngram_with_stop_words
+    text = "Fear is the little-death that brings total obliteration."
+    expected = ["brings total obliteration"]
+    ngrams = Cue.each_ngram(text, 3, :stop_words => :English).to_a
+
+    assert_equal expected, ngrams
+  end
 end
