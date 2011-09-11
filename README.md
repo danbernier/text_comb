@@ -124,6 +124,7 @@ string.each_ngram(2, :stop_words => :English).to_a
 
 # returns:
 ["saw red", "red roosters", "Ted's farm"]
+```
 
 ### Make a Cue::String
 
