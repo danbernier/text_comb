@@ -1,8 +1,5 @@
 require 'java'
-
-# TODO Where should this REALLY go?
-# TODO How to load cue.language.jar when you're a gem?
-require '../bin/cue.language.jar'
+require_relative '../../bin/cue.language.jar'
 
 
 module Cue
