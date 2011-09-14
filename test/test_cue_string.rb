@@ -40,4 +40,12 @@ class TestCueString < MiniTest::Unit::TestCase
     ngrams = cuestr.ngrams(2, :stop_words => :English).to_a
     assert_equal expected, ngrams
   end
+
+  def test_can_guess_its_language
+    cuestr = Cue::String.new("I ate all the peanuts, then threw them up.")
+    assert_equal Cue.stop_words(:English), cuestr.guess_language
+
+    cuestr = Cue::String.new("J'ai la moutarde dans ma moustache.")
+    assert_equal Cue.stop_words(:French), cuestr.guess_language
+  end
 end

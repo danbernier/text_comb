@@ -13,6 +13,10 @@ module Cue
     def ngrams(n, options={})
       Cue.ngrams(self.to_s, n, options)
     end
+
+    def guess_language
+      Cue.guess_language(self.to_s)
+    end
     
   end
 
