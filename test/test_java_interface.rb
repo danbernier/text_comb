@@ -14,10 +14,6 @@ class TestJavaInterface < MiniTest::Unit::TestCase
     expected = %w[I must not fear]
 
     assert_equal expected, Cue.words("I must not fear. ").to_a
-
-    Cue.words("I must not fear. ") do |word|
-      assert_equal expected.shift, word
-    end
   end
 
   def test_each_sentence
@@ -34,20 +30,12 @@ class TestJavaInterface < MiniTest::Unit::TestCase
     ]
 
     assert_equal expected, Cue.sentences(LITTANY).to_a
-
-    Cue.sentences(LITTANY) do |s|
-      assert_equal expected.shift, s
-    end
   end
 
   def test_each_ngram
     expected = ["I must", "must not", "not fear"]
 
     assert_equal expected, Cue.ngrams("I must not fear. ", 2).to_a
-
-    Cue.ngrams("I must not fear. ", 2) do |ngram|
-      assert_equal expected.shift, ngram
-    end
   end
 
   def test_each_ngram_with_stop_words

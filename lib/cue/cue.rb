@@ -4,12 +4,12 @@ require_relative '../../bin/cue.language.jar'
 
 module Cue
 
-  def self.words(string, &block)
-    iterate Java::CueLang::WordIterator.new(string), &block
+  def self.words(string)
+    iterate Java::CueLang::WordIterator.new(string)
   end
 
-  def self.sentences(string, &block)
-    iterate Java::CueLang::SentenceIterator.new(string), &block
+  def self.sentences(string)
+    iterate Java::CueLang::SentenceIterator.new(string)
   end
 
   # Cue.ngrams(string, 3)
@@ -17,7 +17,7 @@ module Cue
   # Cue.ngrams(string, 3, :stop_words => :guess)
   # Cue.ngrams(string, 3, :stop_words => :English)
   # Cue.ngrams(string, 3, Cue.guess_language(string))
-  def self.ngrams(string, n, options={}, &block)
+  def self.ngrams(string, n, options={})
 
     locale = options[:locale] || java.util.Locale.default
 
@@ -30,7 +30,7 @@ module Cue
     end
 
     ngram_iter = Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val)
-    iterate ngram_iter, &block
+    iterate ngram_iter
   end
 
   # Cue.guess_language "How are you?"
@@ -45,13 +45,9 @@ module Cue
   end
 
   private
-  def self.iterate(java_iter, &block)
+  def self.iterate(java_iter)
     CueEnumerator.new(java_iter).tap do |enum|
-      if block_given?
-        enum.each &block
-      else
-        enum
-      end
+      enum
     end
   end
 

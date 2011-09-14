@@ -7,7 +7,7 @@ class TestExtendingStringClass < MiniTest::Unit::TestCase
     # Don't run this until it's needed - it'll pollute other tests.
     require 'cue/core_ext'
 
-    [:each_word, :each_sentence, :each_ngram].each do |method|
+    [:words, :sentences, :ngrams].each do |method|
       assert "some string".respond_to?(method)
     end
   end

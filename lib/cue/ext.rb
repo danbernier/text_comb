@@ -2,16 +2,16 @@ require 'delegate'
 
 module Cue
   module StringExtensions
-    def each_word(&block)
-      Cue.words(self.to_s, &block)
+    def words
+      Cue.words(self.to_s)
     end
 
-    def each_sentence(&block)
-      Cue.sentences(self.to_s, &block)
+    def sentences
+      Cue.sentences(self.to_s)
     end
 
-    def each_ngram(n, options={}, &block)
-      Cue.ngrams(self.to_s, n, options, &block)
+    def ngrams(n, options={})
+      Cue.ngrams(self.to_s, n, options)
     end
     
   end
