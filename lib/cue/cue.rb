@@ -5,11 +5,11 @@ require_relative '../../bin/cue.language.jar'
 module Cue
 
   def self.words(string)
-    iterate Java::CueLang::WordIterator.new(string)
+    CueEnumerator.new(Java::CueLang::WordIterator.new(string))
   end
 
   def self.sentences(string)
-    iterate Java::CueLang::SentenceIterator.new(string)
+    CueEnumerator.new(Java::CueLang::SentenceIterator.new(string))
   end
 
   # Cue.ngrams(string, 3)
@@ -29,8 +29,7 @@ module Cue
       else raise "Can't recognize the stop_words: #{options[:stop_words]}"
     end
 
-    ngram_iter = Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val)
-    iterate ngram_iter
+    CueEnumerator.new(Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val))
   end
 
   # Cue.guess_language "How are you?"
@@ -42,13 +41,6 @@ module Cue
   # Cue.stop_words :French
   def self.stop_words(stopwords_symbol)
     Java::CueLangStop::StopWords.const_get(stopwords_symbol)
-  end
-
-  private
-  def self.iterate(java_iter)
-    CueEnumerator.new(java_iter).tap do |enum|
-      enum
-    end
   end
 
   class CueEnumerator
