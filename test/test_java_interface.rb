@@ -1,6 +1,7 @@
+require 'minitest/autorun'
 require 'cue'
 
-class TestJavaInterface < Test::Unit::TestCase
+class TestJavaInterface < MiniTest::Unit::TestCase
 
   def littany_against_fear
     "I must not fear.  Fear is the mind-killer.  Fear is the little-death

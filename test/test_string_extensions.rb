@@ -1,6 +1,8 @@
+require 'minitest/autorun'
 require 'cue'
 
-class TestCueStringNew < Test::Unit::TestCase
+class TestCueStringNew < MiniTest::Unit::TestCase
+
   def test_can_call_normal_string_methods
     plain_string = "I came. I saw. I hacked."
     cue_string = Cue::String.new(plain_string)
