@@ -4,20 +4,20 @@ require_relative '../../bin/cue.language.jar'
 
 module Cue
 
-  def self.each_word(string, &block)
+  def self.words(string, &block)
     iterate Java::CueLang::WordIterator.new(string), &block
   end
 
-  def self.each_sentence(string, &block)
+  def self.sentences(string, &block)
     iterate Java::CueLang::SentenceIterator.new(string), &block
   end
 
-  # Cue.each_ngram(string, 3)
-  # Cue.each_ngram(string, 3, :locale => java.util.Locale.default)
-  # Cue.each_ngram(string, 3, :stop_words => :guess)
-  # Cue.each_ngram(string, 3, :stop_words => :English)
-  # Cue.each_ngram(string, 3, Cue.guess_language(string))
-  def self.each_ngram(string, n, options={}, &block)
+  # Cue.ngrams(string, 3)
+  # Cue.ngrams(string, 3, :locale => java.util.Locale.default)
+  # Cue.ngrams(string, 3, :stop_words => :guess)
+  # Cue.ngrams(string, 3, :stop_words => :English)
+  # Cue.ngrams(string, 3, Cue.guess_language(string))
+  def self.ngrams(string, n, options={}, &block)
 
     locale = options[:locale] || java.util.Locale.default
 
