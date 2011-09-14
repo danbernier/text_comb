@@ -3,13 +3,12 @@ require 'cue'
 
 class TestJavaInterface < MiniTest::Unit::TestCase
 
-  def littany_against_fear
-    "I must not fear.  Fear is the mind-killer.  Fear is the little-death
-     that brings total obliteration.  I will face my fear.  I will permit
-     it to pass over me and through me.  And when it has gone past I will
-     turn the inner eye to see its path.  Where the fear has gone there
-     will be nothing.  Only I will remain."
-  end
+  LITTANY = "
+    I must not fear.  Fear is the mind-killer.  Fear is the little-death
+    that brings total obliteration.  I will face my fear.  I will permit
+    it to pass over me and through me.  And when it has gone past I will
+    turn the inner eye to see its path.  Where the fear has gone there
+    will be nothing.  Only I will remain.".strip
 
   def test_each_word
     expected = %w[I must not fear]
@@ -34,9 +33,9 @@ class TestJavaInterface < MiniTest::Unit::TestCase
       "Only I will remain."
     ]
 
-    assert_equal expected, Cue.each_sentence(littany_against_fear).to_a
+    assert_equal expected, Cue.each_sentence(LITTANY).to_a
 
-    Cue.each_sentence(littany_against_fear) do |s|
+    Cue.each_sentence(LITTANY) do |s|
       assert_equal expected.shift, s
     end
   end
