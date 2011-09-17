@@ -1,21 +1,21 @@
 require 'java'
 require_relative '../../bin/cue.language.jar'
 
-module Cue
+module Textcomb
 
   def self.words(string)
-    CueEnumerator.new(Java::CueLang::WordIterator.new(string))
+    TextcombEnumerator.new(Java::CueLang::WordIterator.new(string))
   end
 
   def self.sentences(string)
-    CueEnumerator.new(Java::CueLang::SentenceIterator.new(string))
+    TextcombEnumerator.new(Java::CueLang::SentenceIterator.new(string))
   end
 
-  # Cue.ngrams(string, 3)
-  # Cue.ngrams(string, 3, :locale => java.util.Locale.default)
-  # Cue.ngrams(string, 3, :stop_words => :guess)
-  # Cue.ngrams(string, 3, :stop_words => :English)
-  # Cue.ngrams(string, 3, Cue.guess_language(string))
+  # Textcomb.ngrams(string, 3)
+  # Textcomb.ngrams(string, 3, :locale => java.util.Locale.default)
+  # Textcomb.ngrams(string, 3, :stop_words => :guess)
+  # Textcomb.ngrams(string, 3, :stop_words => :English)
+  # Textcomb.ngrams(string, 3, Textcomb.guess_language(string))
   def self.ngrams(string, n, options={})
 
     locale = options[:locale] || java.util.Locale.default
@@ -28,21 +28,22 @@ module Cue
       else raise "Can't recognize the stop_words: #{options[:stop_words]}"
     end
 
-    CueEnumerator.new(Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val))
+    cue_ngram_iter = Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val)
+    TextcombEnumerator.new(cue_ngram_iter)
   end
 
-  # Cue.guess_language "How are you?"
+  # Textcomb.guess_language "How are you?"
   def self.guess_language(string)
     Java::CueLangStop::StopWords.guess string
   end
 
-  # Cue.stop_words :English
-  # Cue.stop_words :French
+  # Textcomb.stop_words :English
+  # Textcomb.stop_words :French
   def self.stop_words(stopwords_symbol)
     Java::CueLangStop::StopWords.const_get(stopwords_symbol)
   end
 
-  class CueEnumerator
+  class TextcombEnumerator
     include Enumerable
 
     def initialize(java_iter)

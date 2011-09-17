@@ -1,22 +1,22 @@
 require 'delegate'
-require 'cue'
+require 'textcomb'
 
-module Cue
+module Textcomb
   module StringExtensions
     def words
-      Cue.words(self.to_s)
+      Textcomb.words(self.to_s)
     end
 
     def sentences
-      Cue.sentences(self.to_s)
+      Textcomb.sentences(self.to_s)
     end
 
     def ngrams(n, options={})
-      Cue.ngrams(self.to_s, n, options)
+      Textcomb.ngrams(self.to_s, n, options)
     end
 
     def guess_language
-      Cue.guess_language(self.to_s)
+      Textcomb.guess_language(self.to_s)
     end
     
   end
@@ -25,7 +25,7 @@ module Cue
     include StringExtensions
   end
   
-  def string(s)
-    Cue::String.new(s)
+  def self.string(s)
+    Textcomb::String.new(s)
   end
 end
