@@ -1,1 +1,1 @@
-rvm --create jruby-1.6.3@textcomb
+rvm --create jruby-1.6.4@textcomb
