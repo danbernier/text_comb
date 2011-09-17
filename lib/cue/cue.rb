@@ -1,7 +1,6 @@
 require 'java'
 require_relative '../../bin/cue.language.jar'
 
-
 module Cue
 
   def self.words(string)
