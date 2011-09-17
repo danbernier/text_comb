@@ -1,4 +1,5 @@
 require 'delegate'
+require 'cue'
 
 module Cue
   module StringExtensions
@@ -22,5 +23,9 @@ module Cue
 
   class String < DelegateClass(::String)
     include StringExtensions
+  end
+  
+  def string(s)
+    Cue::String.new(s)
   end
 end
