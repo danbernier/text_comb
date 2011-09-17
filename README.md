@@ -115,13 +115,14 @@ littany = Textcomb::String.new("I must not fear.")
 littany.ngrams(3).to_a   # ["I must not", "must not fear"]
 ```
 
-Even handier, theres' the Textcomb.string method to save you some 
+Even handier, there's the Textcomb.string method to save you some 
 finger-tapping.
 
 ```ruby
 require 'textcomb'
 littany = Textcomb.string("I must not fear.")
 # You know the drill by now.
+```
 
 ### StringExtensions For Everybody!
 
