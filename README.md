@@ -124,7 +124,7 @@ littany = Textcomb.string("I must not fear.")
 # You know the drill by now.
 ```
 
-### StringExtensions For Everybody!
+### Textcomb On Every String!
 
 If you're feeling generous, code(require 'textcomb/core_ext') mixes
 Textcomb::StringExtensions into the core String class, so **everyone** can
