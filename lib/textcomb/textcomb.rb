@@ -4,11 +4,11 @@ require_relative '../../bin/cue.language.jar'
 module Textcomb
 
   def self.words(string)
-    TextcombEnumerator.new(cue.WordIterator.new(string))
+    enumerate(cue.WordIterator.new(string))
   end
 
   def self.sentences(string)
-    TextcombEnumerator.new(cue.SentenceIterator.new(string))
+    enumerate(cue.SentenceIterator.new(string))
   end
 
   # Textcomb.ngrams(string, 3)
@@ -33,8 +33,7 @@ module Textcomb
         raise "Can't recognize the stop_words: #{options[:stop_words]}"
     end
 
-    cue_ngram_iter = cue.NGramIterator.new(n, string, locale, stop_words_val)
-    TextcombEnumerator.new(cue_ngram_iter)
+    enumerate(cue.NGramIterator.new(n, string, locale, stop_words_val))
   end
 
   # Textcomb.guess_language "How are you?"
@@ -55,6 +54,10 @@ module Textcomb
 
   def self.stop
     Java::CueLangStop
+  end
+
+  def self.enumerate(iterator)
+    TextcombEnumerator.new(iterator)
   end
 
   class TextcombEnumerator
