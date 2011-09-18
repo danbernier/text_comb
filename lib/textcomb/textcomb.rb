@@ -21,11 +21,16 @@ module Textcomb
     locale = options[:locale] || java.util.Locale.default
 
     stop_words_val = case options[:stop_words]
-      when :guess then guess_language(string)
-      when Symbol then stop_words(options[:stop_words])
-      when Java::CueLangStop::StopWords then options[:stop_words]
-      when nil then nil
-      else raise "Can't recognize the stop_words: #{options[:stop_words]}"
+      when :guess
+        guess_language(string)
+      when Symbol
+        stop_words(options[:stop_words])
+      when Java::CueLangStop::StopWords
+        options[:stop_words]
+      when nil
+        nil
+      else
+        raise "Can't recognize the stop_words: #{options[:stop_words]}"
     end
 
     cue_ngram_iter = Java::CueLang::NGramIterator.new(n, string, locale, stop_words_val)
@@ -55,6 +60,6 @@ module Textcomb
         yield @java_iter.next
       end
     end
-  end
 
+  end
 end

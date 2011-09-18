@@ -3,7 +3,11 @@ require_relative "lib/textcomb/version"
 spec = Gem::Specification.new do |s|
   s.name = 'textcomb'
   s.version = Textcomb::VERSION
-  s.summary = %{Extract words, sentences, and n-grams from natural-language text.}
+
+  s.summary = %{
+    Extract words, sentences, and n-grams from natural-language text.
+  }.strip
+
   s.description = %{A Ruby wrapper for the cue.language java library.}
 
   s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb'] + %w[
