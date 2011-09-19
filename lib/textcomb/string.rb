@@ -1,5 +1,5 @@
 require 'delegate'
-require 'textcomb'
+require_relative 'textcomb'
 
 module Textcomb
   module StringExtensions

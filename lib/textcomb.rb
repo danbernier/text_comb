@@ -1,1 +1,1 @@
-require 'textcomb/ext'
+require 'textcomb/string'

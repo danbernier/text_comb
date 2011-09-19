@@ -1,4 +1,4 @@
-require 'textcomb/ext'
+require 'textcomb/string'
 
 class String
   include Textcomb::StringExtensions
