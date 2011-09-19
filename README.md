@@ -121,7 +121,9 @@ finger-tapping.
 ```ruby
 require 'textcomb'
 littany = Textcomb.string("I must not fear.")
-# You know the drill by now.
+littany.words.to_a  # -> ["I", "must", "not", "fear."]
+
+littany.guess_language.to_s  # -> :English
 ```
 
 ### Textcomb On Every String!
