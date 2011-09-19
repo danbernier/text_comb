@@ -1,5 +1,5 @@
 require 'java'
-require_relative '../../bin/cue.language.jar'
+require_relative '../../vendor/cue.language.jar'
 
 module Textcomb
 
