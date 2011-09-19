@@ -38,7 +38,7 @@ module Textcomb
 
   # Textcomb.guess_language "How are you?"
   def self.guess_language(string)
-    stop.StopWords.guess string
+    stop.StopWords.guess(string)
   end
 
   # Textcomb.stop_words :English
