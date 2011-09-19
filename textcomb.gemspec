@@ -18,6 +18,7 @@ spec = Gem::Specification.new do |s|
   ]
 
   s.require_path = 'lib'
+  s.platform = 'java'
   s.required_ruby_version = ">= 1.9.2"
 
   s.author = "Dan Bernier"
