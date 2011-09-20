@@ -1,23 +1,23 @@
 require 'delegate'
 require 'text_comb'
 
-module Textcomb
+module TextComb
   module StringExtensions
 
     def words
-      Textcomb.words(self.to_s)
+      TextComb.words(self.to_s)
     end
 
     def sentences
-      Textcomb.sentences(self.to_s)
+      TextComb.sentences(self.to_s)
     end
 
     def ngrams(n, options={})
-      Textcomb.ngrams(self.to_s, n, options)
+      TextComb.ngrams(self.to_s, n, options)
     end
 
     def guess_language
-      Textcomb.guess_language(self.to_s)
+      TextComb.guess_language(self.to_s)
     end
 
   end
@@ -27,7 +27,7 @@ module Textcomb
   end
 
   def self.string(s)
-    Textcomb::String.new(s)
+    TextComb::String.new(s)
   end
 
 end

@@ -1,7 +1,7 @@
 require 'java'
 require_relative '../vendor/cue.language.jar'
 
-module Textcomb
+module TextComb
 
   def self.words(string)
     enumerate(cue.WordIterator.new(string))
@@ -11,11 +11,11 @@ module Textcomb
     enumerate(cue.SentenceIterator.new(string))
   end
 
-  # Textcomb.ngrams(string, 3)
-  # Textcomb.ngrams(string, 3, :locale => java.util.Locale.default)
-  # Textcomb.ngrams(string, 3, :stop_words => :guess)
-  # Textcomb.ngrams(string, 3, :stop_words => :English)
-  # Textcomb.ngrams(string, 3, Textcomb.guess_language(string))
+  # TextComb.ngrams(string, 3)
+  # TextComb.ngrams(string, 3, :locale => java.util.Locale.default)
+  # TextComb.ngrams(string, 3, :stop_words => :guess)
+  # TextComb.ngrams(string, 3, :stop_words => :English)
+  # TextComb.ngrams(string, 3, TextComb.guess_language(string))
   def self.ngrams(string, n, options={})
 
     locale = options[:locale] || java.util.Locale.default
@@ -36,13 +36,13 @@ module Textcomb
     enumerate(cue.NGramIterator.new(n, string, locale, stop_words_val))
   end
 
-  # Textcomb.guess_language "How are you?"
+  # TextComb.guess_language "How are you?"
   def self.guess_language(string)
     stop.StopWords.guess(string)
   end
 
-  # Textcomb.stop_words :English
-  # Textcomb.stop_words :French
+  # TextComb.stop_words :English
+  # TextComb.stop_words :French
   def self.stop_words(stopwords_symbol)
     stop.StopWords.const_get(stopwords_symbol)
   end
@@ -57,10 +57,10 @@ module Textcomb
   end
 
   def self.enumerate(iterator)
-    TextcombEnumerator.new(iterator)
+    TextCombEnumerator.new(iterator)
   end
 
-  class TextcombEnumerator
+  class TextCombEnumerator
     include Enumerable
 
     def initialize(java_iter)

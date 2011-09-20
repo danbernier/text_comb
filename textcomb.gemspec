@@ -2,7 +2,7 @@ require_relative "lib/text_comb/version"
 
 spec = Gem::Specification.new do |s|
   s.name = 'TextComb'
-  s.version = Textcomb::VERSION
+  s.version = TextComb::VERSION
 
   s.summary = %{
     Extract words, sentences, and n-grams from natural-language text.
