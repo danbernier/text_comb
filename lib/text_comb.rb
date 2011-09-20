@@ -57,10 +57,10 @@ module TextComb
   end
 
   def self.enumerate(iterator)
-    TextCombEnumerator.new(iterator)
+    Iterator.new(iterator)
   end
 
-  class TextCombEnumerator
+  class Iterator
     include Enumerable
 
     def initialize(java_iter)
