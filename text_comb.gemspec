@@ -13,7 +13,7 @@ spec = Gem::Specification.new do |s|
   s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb'] + %w[
     README.md
     Rakefile
-    textcomb.gemspec
+    text_comb.gemspec
     vendor/cue.language.jar
   ]
 
