@@ -1,7 +1,7 @@
-require_relative "lib/textcomb/version"
+require_relative "lib/text_comb/version"
 
 spec = Gem::Specification.new do |s|
-  s.name = 'textcomb'
+  s.name = 'TextComb'
   s.version = Textcomb::VERSION
 
   s.summary = %{
@@ -14,7 +14,7 @@ spec = Gem::Specification.new do |s|
     README.md
     Rakefile
     textcomb.gemspec
-    bin/cue.language.jar
+    vendor/cue.language.jar
   ]
 
   s.require_path = 'lib'

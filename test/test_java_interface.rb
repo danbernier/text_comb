@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'textcomb'
+require 'text_comb'
 
 class TestJavaInterface < MiniTest::Unit::TestCase
 
