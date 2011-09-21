@@ -1,5 +1,8 @@
 require 'java'
 require_relative '../vendor/cue.language.jar'
+require_relative 'text_comb/string_extensions.rb'
+require_relative 'text_comb/string.rb'
+require_relative 'text_comb/iterator.rb'
 
 module TextComb
 
@@ -46,6 +49,13 @@ module TextComb
   def self.stop_words(stopwords_symbol)
     stop.StopWords.const_get(stopwords_symbol)
   end
+  
+  
+  # For convenience
+  def self.string(s)
+    TextComb::String.new(s)
+  end
+  
 
   private
   def self.cue
@@ -58,20 +68,5 @@ module TextComb
 
   def self.enumerate(iterator)
     Iterator.new(iterator)
-  end
-
-  class Iterator
-    include Enumerable
-
-    def initialize(java_iter)
-      @java_iter = java_iter
-    end
-
-    def each
-      while @java_iter.has_next
-        yield @java_iter.next
-      end
-    end
-
   end
 end

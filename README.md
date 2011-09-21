@@ -82,7 +82,7 @@ Extend a string with TextComb::StringExtensions, and it'll have those
 methods:
 
 ```ruby
-require 'text_comb/string'
+require 'text_comb'
 
 motto = "I came. I saw. I hacked."
 motto.extend(TextComb::StringExtensions)
@@ -109,7 +109,7 @@ else to its string. It's like mixing TextComb::StringExtensions into your
 own string.
 
 ```ruby
-require 'text_comb/string'
+require 'text_comb'
 
 littany = TextComb::String.new("I must not fear.")
 littany.ngrams(3).to_a   # ["I must not", "must not fear"]
@@ -119,7 +119,7 @@ Even handier, there's the TextComb.string method to save you some
 finger-tapping.
 
 ```ruby
-require 'text_comb/string'
+require 'text_comb'
 littany = TextComb.string("I must not fear.")
 littany.words.to_a  # -> ["I", "must", "not", "fear."]
 

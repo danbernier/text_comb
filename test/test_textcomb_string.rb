@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'text_comb/string'
+require 'text_comb'
 
 class TestTextCombString < MiniTest::Unit::TestCase
 
