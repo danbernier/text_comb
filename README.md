@@ -126,18 +126,6 @@ littany.words.to_a  # -> ["I", "must", "not", "fear."]
 littany.guess_language.to_s  # -> :English
 ```
 
-### TextComb On Every String!
-
-If you're feeling generous, code(require 'text_comb/core_ext') mixes
-TextComb::StringExtensions into the core String class, so **everyone** can
-enjoy it.
-
-```ruby
-require 'text_comb/core_ext'
-
-"Fear is the mind-killer.".words.to_a   # ["Fear", "is", "the", "mind-killer"]
-```
-
 ### Future Plans
 
 - code(TextComb.ngrams) currently yields whole strings - maybe split
