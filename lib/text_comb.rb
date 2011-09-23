@@ -1,8 +1,8 @@
 require 'java'
 require_relative '../vendor/cue.language.jar'
-require_relative 'text_comb/string_extensions.rb'
-require_relative 'text_comb/string.rb'
-require_relative 'text_comb/iterator.rb'
+require_relative 'text_comb/string_extensions'
+require_relative 'text_comb/string'
+require_relative 'text_comb/iterator'
 
 module TextComb
 
