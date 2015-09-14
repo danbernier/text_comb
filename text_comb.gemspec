@@ -10,7 +10,10 @@ spec = Gem::Specification.new do |s|
 
   s.description = %{A Ruby wrapper for the cue.language java library.}
 
+  s.licenses = ['MIT']
+
   s.files = Dir['lib/**/*.rb'] + Dir['test/**/*.rb'] + %w[
+    LICENSE
     README.md
     Rakefile
     text_comb.gemspec
