@@ -1,7 +1,7 @@
 require_relative "lib/text_comb/version"
 
 spec = Gem::Specification.new do |s|
-  s.name = 'TextComb'
+  s.name = 'text_comb'
   s.version = TextComb::VERSION
 
   s.summary = %{
@@ -23,5 +23,5 @@ spec = Gem::Specification.new do |s|
 
   s.author = "Dan Bernier"
   s.email = "danbernier@gmail.com"
-  s.homepage = "https://github.com/danbernier/s9-e1"
+  s.homepage = "https://github.com/danbernier/text_comb"
 end
